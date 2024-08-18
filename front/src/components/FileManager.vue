@@ -37,7 +37,9 @@
   import { ref, onMounted, h } from 'vue';
   import { message, Progress as AProgress } from 'ant-design-vue';
   import { UploadOutlined } from '@ant-design/icons-vue';
+  import { BASE_URL } from '@/config/constants';
   import axios from 'axios';
+  
   
   const files = ref([]);
   const loading = ref(false);
