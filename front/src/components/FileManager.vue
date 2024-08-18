@@ -59,7 +59,7 @@
   const fetchFiles = async () => {
     loading.value = true;
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/list');
+      const response = await axios.get(`${BASE_URL}/list`);
       files.value = response.data.map((file, index) => ({
         key: index,
         name: file,
@@ -77,7 +77,7 @@
     try {
       isUploading.value = true;
       uploadProgress.value = 0;
-      await axios.post('http://localhost:8080/api/v1/upload', formData, {
+      await axios.post(`${BASE_URL}/upload`, formData, {
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           uploadProgress.value = percentCompleted;
@@ -104,7 +104,7 @@
   
   const downloadFile = async (record) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/v1/download/${record.name}`, {
+      const response = await axios.get(`${BASE_URL}/download/${record.name}`, {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -121,7 +121,7 @@
   
   const deleteFile = async (record) => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/delete/${record.name}`);
+      await axios.delete(`${BASE_URL}/delete/${record.name}`);
       message.success('File deleted successfully');
       fetchFiles();
     } catch (error) {
