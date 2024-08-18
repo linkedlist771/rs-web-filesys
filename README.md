@@ -17,6 +17,15 @@ cargo run --release
  ./target/release/backend  --host 0.0.0.0 --port 8080 --upload-dir ./data
 ```
 
+(mixed compile 2 linux)
+```bash
+brew install FiloSottile/musl-cross/musl-cross
+ln -s /usr/local/bin/x86_64-linux-musl-gcc /usr/local/bin/musl-gcc
+rustup target add x86_64-unknown-linux-musl
+cargo build --release --target x86_64-unknown-linux-musl
+
+```
+
 Ouput as following:
 ~~~
 ) ./target/release/backend  --host 0.0.0.0 --port 8080 --upload-dir ./data
